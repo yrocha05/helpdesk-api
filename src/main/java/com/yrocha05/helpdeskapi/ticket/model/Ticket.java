@@ -29,7 +29,6 @@ public class Ticket {
     public Ticket() {
     }
 
-
     public Ticket(String title, String description, String requesterName, String requesterEmail, TicketPriority priority) {
         this.title = title;
         this.description = description;
@@ -40,7 +39,6 @@ public class Ticket {
         this.createdAt = Instant.now();
         this.updatedAt = this.createdAt;
     }
-
 
     public String getProtocol() {
         return this.protocol;
