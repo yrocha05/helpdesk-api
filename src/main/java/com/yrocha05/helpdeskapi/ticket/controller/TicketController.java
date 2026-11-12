@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yrocha05.helpdeskapi.ticket.dto.CreateTicketRequest;
+import com.yrocha05.helpdeskapi.ticket.dto.TicketResponse;
 import com.yrocha05.helpdeskapi.ticket.model.Ticket;
 import com.yrocha05.helpdeskapi.ticket.service.TicketService;
 
@@ -25,7 +26,8 @@ public class TicketController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Ticket create(@Valid @RequestBody CreateTicketRequest request) {
-        return ticketService.create(request);
+    public TicketResponse create(@Valid @RequestBody CreateTicketRequest request) {
+    Ticket ticket = ticketService.create(request);
+    return TicketResponse.from(ticket);
     }
 }
