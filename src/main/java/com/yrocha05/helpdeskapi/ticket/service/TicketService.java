@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.yrocha05.helpdeskapi.common.exception.TicketNotFoundException;
 import com.yrocha05.helpdeskapi.ticket.dto.CreateTicketRequest;
 import com.yrocha05.helpdeskapi.ticket.model.Ticket;
 import com.yrocha05.helpdeskapi.ticket.repository.TicketRepository;
@@ -31,5 +32,10 @@ public class TicketService {
 
     public List<Ticket> findAll() {
         return ticketRepository.findAll();
+    }
+
+    public Ticket findById(String id) {
+        return ticketRepository.findById(id)
+            .orElseThrow(() -> new TicketNotFoundException(id));
     }
 }
