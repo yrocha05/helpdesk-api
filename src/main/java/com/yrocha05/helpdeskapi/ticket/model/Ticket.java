@@ -119,6 +119,31 @@ public class Ticket {
     public Instant getCreatedAt() {
         return this.createdAt;
     }
+
+    //UPDATE
+    public void update(
+        String title,
+        String description,
+        String requesterName,
+        String requesterEmail,
+        TicketPriority priority,
+        TicketStatus status
+    ) {
+    this.title = title;
+    this.description = description;
+    this.requesterName = requesterName;
+    this.requesterEmail = requesterEmail;
+    this.priority = priority;
+    this.status = status;
+
+    if (status == TicketStatus.CLOSED) {
+        this.closedAt = Instant.now();
+    } else {
+        this.closedAt = null;
+    }
+
+    this.updatedAt = Instant.now();
+    }
     
 
 }

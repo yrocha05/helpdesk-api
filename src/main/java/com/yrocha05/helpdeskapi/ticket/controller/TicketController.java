@@ -15,6 +15,8 @@ import com.yrocha05.helpdeskapi.ticket.dto.CreateTicketRequest;
 import com.yrocha05.helpdeskapi.ticket.dto.TicketResponse;
 import com.yrocha05.helpdeskapi.ticket.model.Ticket;
 import com.yrocha05.helpdeskapi.ticket.service.TicketService;
+import org.springframework.web.bind.annotation.PutMapping;
+import com.yrocha05.helpdeskapi.ticket.dto.UpdateTicketRequest;
 
 import jakarta.validation.Valid;
 
@@ -46,5 +48,14 @@ public class TicketController {
     @GetMapping("/{id}")
     public TicketResponse findById(@PathVariable String id) {
         return TicketResponse.from(ticketService.findById(id));
+    }
+
+    @PutMapping("/{id}")
+        public TicketResponse update(
+            @PathVariable String id,
+            @Valid @RequestBody UpdateTicketRequest request
+    ) {
+        Ticket ticket = ticketService.update(id, request);
+        return TicketResponse.from(ticket);
     }
 }

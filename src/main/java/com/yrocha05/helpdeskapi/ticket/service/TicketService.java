@@ -8,6 +8,7 @@ import com.yrocha05.helpdeskapi.common.exception.TicketNotFoundException;
 import com.yrocha05.helpdeskapi.ticket.dto.CreateTicketRequest;
 import com.yrocha05.helpdeskapi.ticket.model.Ticket;
 import com.yrocha05.helpdeskapi.ticket.repository.TicketRepository;
+import com.yrocha05.helpdeskapi.ticket.dto.UpdateTicketRequest;
 
 @Service
 public class TicketService {
@@ -38,4 +39,19 @@ public class TicketService {
         return ticketRepository.findById(id)
             .orElseThrow(() -> new TicketNotFoundException(id));
     }
+
+    public Ticket update(String id, UpdateTicketRequest request) {
+        Ticket ticket = findById(id);
+
+        ticket.update(
+            request.title(),
+            request.description(),
+            request.requesterName(),
+            request.requesterEmail(),
+            request.priority(),
+            request.status()
+        );
+
+    return ticketRepository.save(ticket);
+}
 }
