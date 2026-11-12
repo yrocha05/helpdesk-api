@@ -1,5 +1,7 @@
 package com.yrocha05.helpdeskapi.ticket.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.yrocha05.helpdeskapi.ticket.dto.CreateTicketRequest;
@@ -25,5 +27,9 @@ public class TicketService {
         );
 
         return ticketRepository.save(ticket);
+    }
+
+    public List<Ticket> findAll() {
+        return ticketRepository.findAll();
     }
 }
